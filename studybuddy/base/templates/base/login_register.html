@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    {%  if page == 'login' %}
+<div>
+    <form method="POST" action="">
+        {# Without a CSRF Token, this web app is vulnerable to attacks. This is a very easy fix, however #}
+        {% csrf_token %}
+        {# with this simple addition, a token has been added and CSRF attacks can no longer occur. #}
+
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="Enter Username...">
+
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Enter Password...">
+
+        <input type="submit" value="Login" />
+    </form>
+
+    <p>Haven't signed up yet?</p>
+    <a href="{% url 'register' %}">Sign Up</a>
+</div>
+
+{% else %}
+
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Register" />
+    </form>
+<p>Already you signed up?</p>
+<a href="{% url 'login' %}">Login</a>
+</div>
+
+{% endif %}
+
+{%  endblock content %}

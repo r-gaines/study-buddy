@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <div>
+        <form method="POST" action="">
+            {# Including {% csrf_token %} in your forms is an essential step when #}
+            {# working with Django to ensure the security of your web applications.#}
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+
+{% endblock content %}
